@@ -16,6 +16,16 @@ export default function TextForm(props) {
     let newText = '';
     setText(newText);
   };
+  const handleCopyClick = () => {
+    let text = document.getElementById("myBox");
+    text.select();
+    navigator.clipboard.writeText(text.value);
+
+  }
+  const handleExtraSpaces = () => {
+    let newText = text.split(/[ ]+/);
+    setText(newText.join(" "));
+  }
   const handleOnChange = (event) => {
     // console.log("On Change");
     setText(event.target.value);
@@ -36,14 +46,20 @@ export default function TextForm(props) {
           rows="12"
         ></textarea>
       </div>
-      <button className="btn btn-primary" onClick={handleUpClick}>
+      <button className="btn btn-primary mx-1" onClick={handleUpClick}>
         Convert To Uppercase
       </button>
-      <button className="btn btn-primary mx-2" onClick={handleLoClick}>
+      <button className="btn btn-primary mx-1" onClick={handleLoClick}>
         Convert To Lowercase
       </button>
-      <button className="btn btn-primary mx-2" onClick={handleClearClick}>
+      <button className="btn btn-primary mx-1" onClick={handleClearClick}>
         Clear Text
+      </button>
+      <button className="btn btn-primary mx-1" onClick={handleCopyClick}>
+        Copy Text
+      </button>
+      <button className="btn btn-primary mx-1" onClick={handleExtraSpaces}>
+        Remove extra space
       </button>
     </div>
     <div className="container my-4">
